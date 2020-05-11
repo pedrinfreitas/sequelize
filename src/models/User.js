@@ -6,25 +6,35 @@ class User extends Model {
       nome: DataTypes.STRING,
       email: DataTypes.STRING,
       celular: DataTypes.STRING,
-      // senha: DataTypes.STRING,
+      senha: DataTypes.STRING,
     }, {
       sequelize
     })
   }
 
   static associate(models) {
+    //tem muitos
     this.hasMany(models.Address, {
       foreignKey: 'user_id',
       as: 'addresses'
     });
-    this.hasMany(models.Pack, {
-      foreignKey: 'user_id',
-      as: 'packs'
-    });
-    this.belongsToMany(models.Fished, {
-      foreignKey: 'user_id',
-      through: 'user_fisheds',
-      as: 'fisheds'
+    
+    //tem muitos
+    // this.hasMany(models.Pack, {
+    //   foreignKey: 'user_id',
+    //   as: 'packs'
+    // });
+
+    //pertence a muitos
+    // this.belongsToMany(models.Fished, {
+    //   foreignKey: 'user_id',
+    //   through: 'user_fisheds',
+    //   as: 'fisheds',
+    // });
+    this.belongsToMany(models.Fished, {      
+      through: 'user_fisheds',      
+      as: 'fisheds',
+      foreignKey: 'user_id'
     });
 
   }

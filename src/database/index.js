@@ -16,6 +16,5 @@ Pack.init(connection);
 User.associate(connection.models);
 Address.associate(connection.models);
 Fished.associate(connection.models);
-Pack.associate(connection.models);
 
 module.exports = connection;

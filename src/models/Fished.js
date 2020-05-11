@@ -11,12 +11,19 @@ class Fished extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.User, { 
-      foreignKey: 'fished_id', 
-      through: 'user_fisheds',
-      as: 'users' 
+    //pertence a muitos
+    // this.belongsToMany(models.User, { 
+    //   foreignKey: 'fished_id', 
+    //   through: 'user_fisheds',
+    //   as: 'users' 
+    // });
+    this.belongsToMany(models.User, {      
+      through: 'user_fisheds',      
+      as: 'users',
+      foreignKey: 'fished_id'
     });
   }
+  
 }
 
 module.exports = Fished;
